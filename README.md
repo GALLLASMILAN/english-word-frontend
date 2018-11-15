@@ -19,12 +19,8 @@ $ yarn start
 $ yarn run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
-
-
-https://bootsnipp.com/snippets/2VoQ
-https://bootsnipp.com/snippets/5M0QX
-https://bootsnipp.com/snippets/Qbkm1
+# editor
+pro quilll editor je potřeba přidat plugin a upravit nuxt.config.js viz https://github.com/surmon-china/vue-quill-editor/tree/master/examples/nuxt-ssr-example
 
 Dobré na frontend:
 https://www.npmjs.com/package/mongodb-stitch

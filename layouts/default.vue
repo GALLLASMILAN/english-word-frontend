@@ -1,7 +1,7 @@
 <template>
     <div>
         <Menu />
-        <div class="container">
+        <div class="container mt-5">
             <nuxt />
         </div>
     </div>

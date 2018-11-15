@@ -19,7 +19,8 @@
     "cross-env": "^5.2.0",
     "eslint-plugin-html": "^4.0.6",
     "express": "^4.16.3",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",

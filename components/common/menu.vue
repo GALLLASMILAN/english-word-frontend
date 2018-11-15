@@ -1,21 +1,63 @@
 <template>
-    <ul class="nav justify-content-center pb-5">
-        <li class="nav-item">
-            <a class="nav-link active" href="/">Vytvoření slovíčka</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/test">Testování</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/list">Seznam slovíček</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Články</a>
-        </li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Hlavní stránka</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li v-for="(menuItem, index) in getData()" :key="index" :class="menuItem.class">
+                    <a class="nav-link" :href="menuItem.url">{{menuItem.title}} </a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            </form>
+        </div>
+    </nav>
 </template>
 
 <script>
-export default {};
+export default {
+    data: function() {
+        const data = [
+            {
+                title: 'Vytvoření slovíčka',
+                url: '/'
+            },
+            {
+                title: 'Testování',
+                url: '/test'
+            },
+            {
+                title: 'Seznam slovíček',
+                url: '/list'
+            },
+            {
+                title: 'články',
+                url: '/article'
+            },
+            {
+                title: 'nový článek',
+                url: '/article/create'
+            }
+        ];
+
+        return {
+            menuItems: data
+        };
+    },
+    methods: {
+        getData() {
+            return this.menuItems.map(item => {
+                return {
+                    ...item,
+                    class: this.$route.path == item.url ? 'nav-item active' : 'nav-item'
+                };
+            });
+        }
+    }
+};
 </script>
 
