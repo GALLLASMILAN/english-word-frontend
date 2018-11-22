@@ -8,12 +8,19 @@
 import axios from '~/plugins/axios';
 import CreateForm from '../../components/article/create-form';
 export default {
-    components: {CreateForm},
+    components: { CreateForm },
     async asyncData() {
         const response = await axios('/v1/article');
         return {
-            articleList: response.data
-        }
+            articleList: response.data,
+            article: {
+                relatedArticle: [],
+                content: '<p>I am Example</p>',
+                url: '',
+                title: '',
+                tags: ''
+            }
+        };
     }
-}
+};
 </script>
