@@ -1,12 +1,18 @@
 const pkg = require('./package');
 
+const isProduction = (process.env.NODE_ENV === 'production');
+
+const env = {
+    baseUrl: isProduction ? 'https://english-backend-app.herokuapp.com' : 'http://localhost',
+};
+if (!isProduction) {
+    env.basePort = 4000;
+}
+
 module.exports = {
     mode: 'universal',
 
-    env: {
-        baseUrl: process.env.BASE_URL || 'http://localhost',
-        basePort: 4000
-    },
+    env: env,
 
     /*
   ** Headers of the page

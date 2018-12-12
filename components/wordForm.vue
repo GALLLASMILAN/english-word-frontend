@@ -34,13 +34,16 @@ export default {
             originalWord: this.word.name,
             translates: this.word.translates.join(', '),
             language: this.word.language,
-            buttonName: this.buttonName
         }
     },
     methods: {
         processData: function(event) {
             event.preventDefault();
-            this.$store.commit(this.methodName);
+            this.$store.commit(this.methodName, {
+                name: this.originalWord.trim(),
+                language: this.language.trim(),
+                translates: this.translates.split(',').map(translate => translate.split())
+            });
         }
     }
 }

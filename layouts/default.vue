@@ -1,16 +1,18 @@
 <template>
     <div>
         <Menu />
+        <AlertList />
         <div class="container mt-5">
-            <nuxt />
+            <nuxt :foobar="123" />
         </div>
     </div>
 </template>
 
 <script>
 import Menu from '../components/common/menu';
+import AlertList from '../components/common/alertList';
 export default {
-    components: {Menu}
+    components: {Menu, AlertList},
 }
 </script>
 

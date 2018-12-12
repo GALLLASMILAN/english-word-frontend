@@ -24,3 +24,15 @@ pro quilll editor je potřeba přidat plugin a upravit nuxt.config.js viz https:
 
 Dobré na frontend:
 https://www.npmjs.com/package/mongodb-stitch
+
+
+lsof -nP -iTCP:3000
+sudo kill -9 47162
+
+
+TODO:
+- stránka login
+- přesměrovat na stránku login, pokud není přihlášen
+- bootstrap - produkční prostředí
+- smazat duplicitní slovíčka
+- ukládání již existujícího slovíčka

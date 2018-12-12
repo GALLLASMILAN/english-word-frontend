@@ -19,13 +19,14 @@
             </div>
             <button type="submit" class="btn btn-primary">Ulož</button>
         </form>
-        {{debug}}
     </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
 export default {
+    middleware: ['authenticated'],
+    props: ['alertMessage'],
     data: function() {
         return {
             language: 'en',
@@ -38,8 +39,7 @@ export default {
         saveWord: function(event) {
             event.preventDefault();
             if (this.originalWord == '' || this.translates == '') {
-                this.debug = 'prosím vyplňte všechny pole';
-                return;
+                return this.$store.commit('logs/WARRNING', 'prosím vyplňte všechny pole');
             } else {
                 const data = {
                     word: this.originalWord.trim(),
@@ -48,15 +48,18 @@ export default {
                 }
 
                 axios.post('/v1/word/save', data).then(response => {
+                    this.$store.commit('logs/INFO', `slovíčko ${data.word} bylo úspěšně přidáno`);
                     this.debug = response.data;
+                    this.setDefaultValues();
                 }).catch(error => {
-                    this.debug = error;
+                    this.$store.commit('logs/ERROR', 'nepodařilo se přidat nové slovíčko');
                 });
-
-                this.originalWord = '';
-                this.translates = '';
-                this.language = 'en'
             }
+        },
+        setDefaultValues() {
+             this.originalWord = '';
+             this.translates = '';
+             this.language = 'en'
         }
     }
 }

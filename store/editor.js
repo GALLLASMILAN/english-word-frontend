@@ -1,6 +1,6 @@
-export default {
+export const state = () => ({
     // some quill options
-    modules : {
+    modules: {
         table: true,
         toolbar: [
             [
@@ -11,15 +11,7 @@ export default {
             ],
             [
                 {
-                    header: [
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        false
-                    ]
+                    header: [3, 4, 5, 6, false]
                 }
             ],
             [
@@ -74,4 +66,4 @@ export default {
             ['link', 'image', 'video']
         ]
     }
-};
+});

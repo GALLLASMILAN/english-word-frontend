@@ -40,7 +40,7 @@ export default {
             debug: {}
         };
     },
-    async asyncData() {
+    async asyncData({store}) {
         try {
             let wordList = await axios.get('/v1/word/');
             return {
