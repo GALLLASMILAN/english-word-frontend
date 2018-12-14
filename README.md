@@ -29,10 +29,22 @@ https://www.npmjs.com/package/mongodb-stitch
 lsof -nP -iTCP:3000
 sudo kill -9 47162
 
+# head + seo
+https://www.npmjs.com/package/vue-head
+https://github.com/nuxt/nuxt.js/issues/188
 
 TODO:
-- stránka login
-- přesměrovat na stránku login, pokud není přihlášen
 - bootstrap - produkční prostředí
 - smazat duplicitní slovíčka
 - ukládání již existujícího slovíčka
+
+#fuck
+[https://cdnjs.com/libraries/twitter-bootstrap]
+= cloudfare => lepší pokrití v evropě a americe
+ - javascript, který načítám z cdn musí mít nataveno (crossorigin="anonymous")
+ - integrity = kvůli zabezpečení
+ - tree shaking = "sideEffects": false (in package.json)
+ - bundle analyze = webpack-bundle-analyzer" ---  http://127.0.0.1:8888/
+ - lang in html = head.bodyAttrs.lang="cs" && head.htmlAttrs.lang="cs" (nuxt.config.js)
+ @todo chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js
+ @todo použít https://github.com/GoogleChromeLabs/quicklink

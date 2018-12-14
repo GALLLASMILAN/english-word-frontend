@@ -22,14 +22,14 @@
                     <p>
                         Vaše odpověď = <span class="red">{{result.userTranslate}}</span>
                     </p>
-                    <p>
+                    <div>
                         seznam možných překladů:
                         <ul>
                             <li v-for="(translate, index) in result.translates" :key="index">
                                 <span class="green">{{translate}}</span>
                             </li>
                         </ul>
-                    </p>
+                    </div>
                 </div>
             </div>
             <br />
@@ -38,18 +38,21 @@
                 <button type="submit" class="btn btn-primary">Odeslat</button>
             </div>
         </form>
-        <div v-if="debug"> {{debug}} </div>
     </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios';
 export default {
-    data: () => ({ translate: '', originalWord: '', result: false, debug: false, origWord: false }),
+    middleware: ["authenticated"],
+    data: () => ({ translate: '', originalWord: '', result: false, origWord: false }),
     async mounted() {
         await this.loadWord();
     },
     methods: {
+        test() {
+            this.flush('test');
+        },
         testTranslate: async function(event) {
             event.preventDefault();
 
@@ -70,7 +73,7 @@ export default {
                 this.result = response.data;
                 await this.loadWord();
             } catch (error) {
-                this.debug = error.message;
+                this.flushError(error.message);
             }
 
             this.translate = '';
@@ -81,8 +84,7 @@ export default {
                 // to store
                 this.origWord = response.data.name;
             } catch (error) {
-                this.origWord = 'above';
-                this.debug = error.message;
+                this.flushError('Nepodařilo se připojit k serveru');
             }
         }
     }

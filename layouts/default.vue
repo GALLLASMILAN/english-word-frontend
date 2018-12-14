@@ -13,6 +13,11 @@ import Menu from '../components/common/menu';
 import AlertList from '../components/common/alertList';
 export default {
     components: {Menu, AlertList},
+    head() {
+        return {
+            title: "Angličtina snadno a rychle",
+        }
+    },
 }
 </script>
 

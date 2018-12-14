@@ -1,8 +1,5 @@
 <template>
   <div>
-    <p v-show="debug">
-      {{debug}}
-    </p>
     <div
       v-for="(article, index) in articleList"
       :key="index"
@@ -30,7 +27,7 @@
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
 export default {
-  async asyncData() {
+  async asyncData({app}) {
     try {
       const articleListResponse = await axios("/v1/article");
       return {
@@ -38,9 +35,7 @@ export default {
         debug: false
       };
     } catch (error) {
-      return {
-        debug: error.message
-      };
+      app.flushError('Nepodařilo se připojit k serveru.');
     }
   },
   computed: mapState({

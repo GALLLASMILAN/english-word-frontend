@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="wordList.length>0">
         <h1>Seznam existujících slovíček</h1>
         <table class="table table-sm table-striped">
             <thead class="thead-dark">
@@ -34,24 +34,21 @@
 import axios from '~/plugins/axios';
 
 export default {
+    middleware: ["authenticated"],
     data: function() {
         return {
             wordList: [],
             debug: {}
         };
     },
-    async asyncData({store}) {
+    async asyncData({app}) {
         try {
             let wordList = await axios.get('/v1/word/');
             return {
                 wordList: wordList.data,
-                debug: {}
             };
         } catch (error) {
-            return {
-                debug: error,
-                wordList: []
-            };
+            app.flushError('Nepodařilo se připojit k serveru')
         }
     },
     methods: {

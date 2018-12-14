@@ -24,7 +24,7 @@ export default {
       return {
         word: response.data,
         buttonName: "Aktualizovat",
-        methodName: "word/UPDATE"
+        methodName: "word/editWord"
       };
     } catch (error) {
       store.commit("logs/ERROR", error.message);

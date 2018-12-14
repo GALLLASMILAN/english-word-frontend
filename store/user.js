@@ -1,8 +1,8 @@
 export const state = () => ({
     actualUser: {
         name: 'gali',
-        role: 'guest',
-        // role: 'admin',
+        // role: 'guest',
+        role: 'admin',
         token: 'dfadsfdsafdsfds'
     }    
 });

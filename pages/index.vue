@@ -26,20 +26,18 @@
 import axios from '~/plugins/axios'
 export default {
     middleware: ['authenticated'],
-    props: ['alertMessage'],
     data: function() {
         return {
             language: 'en',
             originalWord: '',
             translates: '',
-            debug: {}
         }
     },
     methods: {
         saveWord: function(event) {
             event.preventDefault();
             if (this.originalWord == '' || this.translates == '') {
-                return this.$store.commit('logs/WARRNING', 'prosím vyplňte všechny pole');
+                return this.flushWarrning('prosím vyplňte všechny pole');
             } else {
                 const data = {
                     word: this.originalWord.trim(),
@@ -48,11 +46,10 @@ export default {
                 }
 
                 axios.post('/v1/word/save', data).then(response => {
-                    this.$store.commit('logs/INFO', `slovíčko ${data.word} bylo úspěšně přidáno`);
-                    this.debug = response.data;
+                    this.flush(`slovíčko ${data.word} bylo úspěšně přidáno`);
                     this.setDefaultValues();
                 }).catch(error => {
-                    this.$store.commit('logs/ERROR', 'nepodařilo se přidat nové slovíčko');
+                    this.flushError('nepodařilo se přidat nové slovíčko');
                 });
             }
         },
