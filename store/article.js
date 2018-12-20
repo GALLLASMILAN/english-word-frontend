@@ -42,7 +42,6 @@ export const getters = {
 
 export const actions = {
     saveArticle({getters, commit}) {
-        console.log('start');
         axios.post('/v1/article/', {
             article: getters.parsedArticle
         }).then(response => {
@@ -55,18 +54,5 @@ export const actions = {
         }).catch(() => {
             commit('logs/ERROR', 'Nepodařilo se vytvořit članek. Zkuste to prosím později', { root: true });
         });
-
-        /*axios.post('/v1/article/', {
-            article: getters.parsedArticle
-        }, (err, response) => {
-            console.log('in request');
-            if (err || response.data.status !== 'new') {
-                commit('logs/ERROR', 'Nepodařilo se vytvořit članek', { root: true });
-            } else {
-                commit('logs/INFO', 'Článek byl úspěšně vytvořen', { root: true });
-                commit('RESETARTICLE');
-            }
-        });*/
-        console.log('end');
     }
 };

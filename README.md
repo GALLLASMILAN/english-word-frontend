@@ -48,3 +48,4 @@ TODO:
  - lang in html = head.bodyAttrs.lang="cs" && head.htmlAttrs.lang="cs" (nuxt.config.js)
  @todo chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js
  @todo použít https://github.com/GoogleChromeLabs/quicklink
+ VETUR - doplňek do code. Nastavit 4 mezery jako tab!!!!§

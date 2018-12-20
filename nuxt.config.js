@@ -4,7 +4,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
@@ -12,7 +12,7 @@ const env = {
     baseUrl: isProduction
         ? 'https://english-backend-app.herokuapp.com'
         : 'http://localhost:4000',
-    flushDuration: 7    
+    flushDuration: 7
 };
 
 module.exports = {
@@ -98,7 +98,7 @@ module.exports = {
     /*
   ** Plugins to load before mounting the App
   */
-    plugins: ['~/plugins/flush'],
+    plugins: ['~/plugins/flush', '~/plugins/api'],
 
     /*
   ** Nuxt.js modules
@@ -129,20 +129,22 @@ module.exports = {
             }
             // Remove unused CSS using purgecss. See https://github.com/FullHuman/purgecss
             // for more information about purgecss.
-            config
-                .plugins
-                .push(new PurgecssPlugin({
-                    paths: glob.sync([
-                        path.join(__dirname, './pages/**/*.vue'),
-                        path.join(__dirname, './layouts/**/*.vue'),
-                        path.join(__dirname, './components/**/*.vue')
-                    ]),
-                    whitelist: ['html', 'body']
-                }));
-            // Visualize size of webpack output files with an interactive zoomable treemap.
-            /*config
-                .plugins
-                .push(new BundleAnalyzerPlugin({}));*/
+            if (ctx.isProduction) {
+                config
+                    .plugins
+                    .push(new PurgecssPlugin({
+                        paths: glob.sync([
+                            path.join(__dirname, './pages/**/*.vue'),
+                            path.join(__dirname, './layouts/**/*.vue'),
+                            path.join(__dirname, './components/**/*.vue')
+                        ]),
+                        whitelist: ['html', 'body']
+                    }));
+                // Visualize size of webpack output files with an interactive zoomable treemap.
+                config
+                    .plugins
+                    .push(new BundleAnalyzerPlugin({}));
+            }
         },
         extractCSS: true,
         optimization: {

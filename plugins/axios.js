@@ -1,5 +1,3 @@
 import axios from 'axios';
 
-export default axios.create({
-    baseURL: `${process.env.baseUrl}:${process.env.basePort}`
-});
+export default axios.create({baseURL: `${process.env.baseUrl}:${process.env.basePort}`});

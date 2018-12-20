@@ -5,27 +5,54 @@
             <div class="row">
                 <div class="form-group col-5">
                     <label for="exampleInputEmail1">Slovíčko</label>
-                    <input type="text" v-bind:value="origWord" class="form-control" id="text" disabled>
+                    <input
+                        type="text"
+                        v-bind:value="origWord"
+                        class="form-control"
+                        id="text"
+                        disabled
+                    >
                 </div>
                 <div class="form-group col-5 offset-2">
                     <label for="exampleInputPassword1">Přeložte</label>
-                    <input type="text" v-model="translate" class="form-control" id="translates" autocomplete="off">
-                    <small id="emailHelp" class="form-text text-muted">Namusíte psát diakritiku</small>
+                    <input
+                        type="text"
+                        v-model="translate"
+                        class="form-control"
+                        id="translates"
+                        autocomplete="off"
+                    >
+                    <small
+                        id="emailHelp"
+                        class="form-text text-muted"
+                    >Namusíte psát diakritiku</small>
                 </div>
             </div>
 
-            <div v-show="result" class="row">
-                <div v-show="result.translated" class="col-12">
+            <div
+                v-show="result"
+                class="row"
+            >
+                <div
+                    v-show="result.translated"
+                    class="col-12"
+                >
                     <strong> {{result.userTranslate}} ✅ </strong>
                 </div>
-                <div v-show="!result.translated" class="col-12">
+                <div
+                    v-show="!result.translated"
+                    class="col-12"
+                >
                     <p>
                         Vaše odpověď = <span class="red">{{result.userTranslate}}</span>
                     </p>
                     <div>
                         seznam možných překladů:
                         <ul>
-                            <li v-for="(translate, index) in result.translates" :key="index">
+                            <li
+                                v-for="(translate, index) in result.translates"
+                                :key="index"
+                            >
                                 <span class="green">{{translate}}</span>
                             </li>
                         </ul>
@@ -35,57 +62,59 @@
             <br />
 
             <div class="row col-12">
-                <button type="submit" class="btn btn-primary">Odeslat</button>
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >Odeslat</button>
             </div>
         </form>
     </div>
 </template>
 
 <script>
-import axios from '~/plugins/axios';
+import axios from "~/plugins/axios";
 export default {
     middleware: ["authenticated"],
-    data: () => ({ translate: '', originalWord: '', result: false, origWord: false }),
+    data: () => ({
+        translate: "",
+        originalWord: "",
+        result: false,
+        origWord: false
+    }),
     async mounted() {
         await this.loadWord();
     },
     methods: {
-        test() {
-            this.flush('test');
-        },
         testTranslate: async function(event) {
             event.preventDefault();
 
-            if (this.translate == '') {
-                this.debug = 'Pole nesmí být prázdné';
+            if (this.translate == "") {
+                this.debug = "Pole nesmí být prázdné";
                 return;
             }
 
             const data = {
-                language: 'en',
-                to: 'cs',
+                language: "en",
+                to: "cs",
                 originalWord: this.origWord,
                 translate: this.translate
             };
 
-            try {
-                const response = await axios.put('/v1/word/translate', data);
+            this.$api('word').translate(data).then(response => {
+                this.translate = "";
                 this.result = response.data;
-                await this.loadWord();
-            } catch (error) {
-                this.flushError(error.message);
-            }
-
-            this.translate = '';
+                this.loadWord();
+            }).catch(error => {
+                this.$flushError(error.message);
+            })
         },
-        loadWord: async function() {
-            try {
-                const response = await axios.get('/v1/word/choose/en');
-                // to store
-                this.origWord = response.data.name;
-            } catch (error) {
-                this.flushError('Nepodařilo se připojit k serveru');
-            }
+        loadWord: function() {
+            return this.$api("word")
+                .choose()
+                .then(response => (this.origWord = response.data.name))
+                .catch(error =>
+                    this.$flushError("Nepodařilo se připojit k serveru"+error.message)
+                );
         }
     }
 };
