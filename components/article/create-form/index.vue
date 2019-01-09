@@ -4,7 +4,7 @@
         <form
             action=""
             class="mt-5"
-            v-on:submit="createArticle"
+            @submit.prevent="createArticle"
         >
             <div class="row">
                 <NameInput
@@ -18,17 +18,19 @@
             </div>
             <div class="row">
                 <div class="col-xl-10 form-group offset-xl-1">
-                    <label for="">Obsah článku</label>
-                    <textarea :value="article.body" />
+                    <ContentEditor 
+                        v-model="article.body"
+                        @edit:content="edit('body', $event)"
+                    />
                 </div>
             </div>
-            <br /><br /><br />
+            
             <div class="row mt-5">
                 <TagsInput
                     v-model="article.tags"
                     @edit:tags="edit('tags', $event)"
                 />
-                <RelatedArticles 
+                <RelatedArticles
                     :value="relatedArticle"
                     @edit:relatedArticles="edit('relatedArticles', $event)"
                     :articleList="articleList"
@@ -56,6 +58,7 @@ import NameInput from "./name-input";
 import UrlInput from "./url-input";
 import TagsInput from "./tags-input";
 import RelatedArticles from "./related-articles";
+import ContentEditor from "./content-editor";
 import Article from "../show-detail/";
 import axios from "~/plugins/axios";
 import { mapState, mapMutations, mapActions } from "vuex";
@@ -66,7 +69,14 @@ export default {
         };
     },
     props: ["articleList"],
-    components: { Article, NameInput, UrlInput, TagsInput, RelatedArticles },
+    components: {
+        Article,
+        NameInput,
+        UrlInput,
+        TagsInput,
+        RelatedArticles,
+        ContentEditor
+    },
     computed: {
         ...mapState({
             editorOption: state => state.editor
@@ -83,9 +93,8 @@ export default {
             saveArticle: "article/saveArticle"
         }),
         createArticle(event) {
-            event.preventDefault();
             if (this.url == "" || this.title == "") return;
-            this.saveArticle();
+            this.$emit('article:create', this.article);
         },
         edit(name, data) {
             if (name === "relatedArticles") {

@@ -1,5 +1,7 @@
- - doimplementovat ckeditor
+ - ✅ doimplementovat ckeditor
+ - smazání článku
  - opravit vytvoření slovíčka
  - otestovat aplikaci
+ - odstranit přebytečné balíčky
  - doimplementovat font
  - doimplementovat typescript (další studium)

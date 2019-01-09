@@ -5,7 +5,7 @@
             type="text"
             class="form-control"
             :value="value"
-            v-on:input="$emit('edit:url', $event.target.value)"
+            @input="$emit('edit:url', $event.target.value)"
         >
     </div>
 </template>

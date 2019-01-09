@@ -1,6 +1,9 @@
 <template>
     <div v-if="articleList">
-        <CreateForm :articleList="articleList" />
+        <CreateForm
+            :articleList="articleList"
+            @article:create="createArticle($event)"
+        />
     </div>
     <div v-else>
         <h1>404: Page Not Found</h1>
@@ -33,9 +36,31 @@ export default {
                 app.$flushError("Nepodařilo se připojit k serveru")
             );
     },
+    methods: {
+        createArticle(article) {
+            this.$api("article")
+                .create({ article: article })
+                .then(response => {
+                    if (response.data.status !== "new") {
+                        this.$flushError(
+                            //response.data.error
+                            "Nepodařilo se vytvořit članek, článek již existuje"
+                        );
+                    } else {
+                        this.$flush("Článek byl úspěšně vytvořen");
+                        this.$store.commit("article/RESETARTICLE");
+                    }
+                })
+                .catch(error => {
+                    this.$flushError(
+                        "Nepodařilo se uložit článek, prosím zkuste to znovu"
+                    );
+                });
+        }
+    },
     head() {
         return {
-            title: "Přidání nového článku",
+            title: "Přidání nového článku"
         };
     }
 };
