@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="articleList">
         <div
             v-for="(article, index) in articleList"
             :key="index"
@@ -15,28 +15,35 @@
                     :data-id="article.id"
                     v-on:click="deleteArticle(article)"
                     v-if="isAdmin()"
+                    class="btn btn-danger"
                 >
                     smazat
                 </button>
             </div>
         </div>
     </div>
+    <div v-else>
+        <p>Žádné články nejsou k dispozici</p>
+    </div>
 </template>
 
 <script>
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
+import getBreadCrumbs from '~/lib/get-bread-crumbs';
 export default {
-    async asyncData({ app }) {
-        try {
-            const articleListResponse = await axios("/v1/article");
-            return {
-                articleList: articleListResponse.data,
-                debug: false
-            };
-        } catch (error) {
-            app.flushError("Nepodařilo se připojit k serveru.");
-        }
+    async asyncData({ app, store }) {
+        return app
+            .$api("article")
+            .read()
+            .then(response => {
+                store.dispatch("breadcrumbs/set", getBreadCrumbs('article'));
+                return {
+                    articleList: response.data,
+                    debug: false
+                };
+            })
+            .catch(error => app.$flushError(error.message));
     },
     computed: mapState({
         actualUser: state => state.user.actualUser

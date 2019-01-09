@@ -73,6 +73,8 @@
 
 <script>
 import axios from "~/plugins/axios";
+import getBreadCrumbs from '~/lib/get-bread-crumbs';
+
 export default {
     middleware: ["authenticated"],
     data: () => ({
@@ -83,6 +85,7 @@ export default {
     }),
     async mounted() {
         await this.loadWord();
+        this.$store.dispatch("breadcrumbs/set", getBreadCrumbs('word/test'));
     },
     methods: {
         testTranslate: async function(event) {

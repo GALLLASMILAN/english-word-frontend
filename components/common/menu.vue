@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a
       class="navbar-brand"
-      href="#"
+      href="/"
     >Hlavní stránka</a>
     <button
       class="navbar-toggler"
@@ -49,17 +49,17 @@ export default {
     const data = [
       {
         title: "Vytvoření slovíčka",
-        url: "/",
+        url: "/word/create",
         role: ["admin", "user"]
       },
       {
         title: "Testování",
-        url: "/test",
+        url: "/word/test",
         role: ["admin", "user"]
       },
       {
         title: "Seznam slovíček",
-        url: "/list",
+        url: "/word",
         role: ["admin", "user"]
       },
       {

@@ -41,7 +41,7 @@
 
 <script>
 import axios from "~/plugins/axios";
-
+import getBreadCrumbs from '~/lib/get-bread-crumbs';
 export default {
     middleware: ["authenticated"],
     data: function() {
@@ -50,11 +50,14 @@ export default {
             debug: {}
         };
     },
-    async asyncData({ app }) {
+    async asyncData({ app, store }) {
         return app
             .$api("word")
             .read()
-            .then(response => ({ wordList: response.data }))
+            .then(response => {
+                store.dispatch("breadcrumbs/set", getBreadCrumbs('article'));
+                return { wordList: response.data };
+            })
             .catch(error =>
                 app.$flushError("Nepodařilo se připojit k serveru")
             );
@@ -64,7 +67,7 @@ export default {
             this.$api("word")
                 .read()
                 .catch(error => console.log(error.message));
-            return `/edit/${name}`;
+            return `/word/${name}`;
         }
     }
 };

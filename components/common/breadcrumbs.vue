@@ -1,12 +1,41 @@
 <template>
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" v-if="total > 0">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Hlavní stránka</a></li>
-            <li class="breadcrumb-item"><a href="/list">Seznam slovíček</a></li>
             <li
+                v-for="(crumb, index) in crumbs"
+                :key="index"
+                class="breadcrumb-item"
+            >
+                <a :href="crumb.url">
+                    {{crumb.name}}
+                </a>
+            </li>
+            <li
+                v-for="(activeCrumb, index) in active"
+                :key="index"
                 class="breadcrumb-item active"
                 aria-current="page"
-            >Úprava slovíčka</li>
+            >
+                {{activeCrumb.name}}
+            </li>
         </ol>
     </nav>
 </template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+    computed: {
+        ...mapState({
+            crumbs: state =>
+                state.breadcrumbs.filter(crumb => crumb.active == 0) || [],
+            active: state =>
+                state.breadcrumbs.filter(crumb => crumb.active == 1) || []
+        }),
+        total(){
+            return this.crumbs.length+this.active.length;
+        } 
+    }
+};
+</script>
+

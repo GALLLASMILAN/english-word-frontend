@@ -16,7 +16,7 @@
 <script>
 import axios from "~/plugins/axios";
 import wordForm from "~/components/wordForm";
-
+import getBreadCrumbs from "~/lib/get-bread-crumbs";
 export default {
     components: { wordForm },
     data: () => ({ origWord: false, debug: false }),
@@ -24,11 +24,17 @@ export default {
         return app
             .$api("word")
             .getOne(params.name, "en")
-            .then(response => ({
-                word: response.data,
-                buttonName: "Aktualizovat",
-                methodName: "word/editWord"
-            }))
+            .then(response => {
+                store.dispatch(
+                    "breadcrumbs/set",
+                    getBreadCrumbs("word/detail", params.name)
+                );
+                return {
+                    word: response.data,
+                    buttonName: "Aktualizovat",
+                    methodName: "word/editWord"
+                };
+            })
             .catch(error =>
                 app.$flushError("Nepodařilo se připojit k serveru")
             );

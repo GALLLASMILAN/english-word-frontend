@@ -1,0 +1,5 @@
+ - doimplementovat ckeditor
+ - opravit vytvoření slovíčka
+ - otestovat aplikaci
+ - doimplementovat font
+ - doimplementovat typescript (další studium)

@@ -5,6 +5,7 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack');
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
@@ -98,7 +99,7 @@ module.exports = {
     /*
   ** Plugins to load before mounting the App
   */
-    plugins: ['~/plugins/flush', '~/plugins/api'],
+    plugins: ['~/plugins/flush', '~/plugins/api', '~/plugins/wysiwyg'],
 
     /*
   ** Nuxt.js modules
