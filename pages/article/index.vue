@@ -30,14 +30,14 @@
 <script>
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
-import getBreadCrumbs from '~/lib/get-bread-crumbs';
+import getBreadCrumbs from "~/lib/get-bread-crumbs";
 export default {
     async asyncData({ app, store }) {
         return app
             .$api("article")
             .read()
             .then(response => {
-                store.dispatch("breadcrumbs/set", getBreadCrumbs('article'));
+                store.dispatch("breadcrumbs/set", getBreadCrumbs("article"));
                 return {
                     articleList: response.data,
                     debug: false
@@ -53,19 +53,21 @@ export default {
             return `article/${url}`;
         },
         deleteArticle: async function(article) {
-            try {
-                const removeArticleResponse = await axios.delete(
-                    "/v1/article",
-                    {
-                        data: {
-                            token: this.actualUser.token,
-                            articleId: article._id
-                        }
-                    }
-                );
-            } catch (error) {
-                this.debug = error.message;
+            var result = confirm("Opravdu chcete článek smazat?");
+            if (result) {
+                this.$api("article")
+                .delete({
+                    token: this.actualUser.token,
+                    articleId: article._id
+                })
+                .then(response => {
+                    this.$flush("článek byl śpěšně smazán");
+                })
+                .catch(error => {
+                    this.$flushError(error.message);
+                });
             }
+            
         },
         isAdmin() {
             return this.actualUser.role == "admin";
