@@ -2,7 +2,7 @@ import axios from '~/plugins/axios';
 
 const defaultArticle = {
     relatedArticles: [],
-    body: '',
+    body: '<p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>',
     url: '',
     title: '',
     tags: []
@@ -16,6 +16,11 @@ export const mutations = {
     ['EDITARTICLE'](state, data) {
         state.actualArticle = {
             ...state.actualArticle,
+            ...data
+        };
+    },
+    ['SETARTICLE'](state, data) {
+        state.actualArticle = {
             ...data
         };
     },
