@@ -49,3 +49,7 @@ TODO:
  @todo chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js
  @todo použít https://github.com/GoogleChromeLabs/quicklink
  VETUR - doplňek do code. Nastavit 4 mezery jako tab!!!!§
+
+ #optimalizace Jarek
+ https://www.fontsquirrel.com/tools/webfont-generator - pro generování všech variant
+ https://jakearchibald.github.io/svgomg/ - minifikace svg

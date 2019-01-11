@@ -52,7 +52,7 @@
         </form>
         <div class="mt-5">
             <img
-                src="/browser2.svg"
+                src="/browser.svg"
                 alt=""
                 class="w-100"
             >

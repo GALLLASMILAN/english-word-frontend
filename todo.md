@@ -4,9 +4,8 @@
  - ✅ opravit vytvoření slovíčka
  - ✅ client side (menu|breadcrumbs|pagas)
  - ✅ pamatování dat ve formuláři
- - doimplementovat font
- - doimplementovat lazyload
+ - ✅  doimplementovat font
  - flush messages - automaticky odstranit hlášku po x vteřinách
- - otestovat aplikaci
  - doimplementovat typescript (další studium)
  - customizace bootstrapu
+ - doimplementovat lazyload
