@@ -1,10 +1,12 @@
  - ✅ doimplementovat ckeditor
  - ✅ odstranit přebytečné balíčky
  - ✅ smazání článku
- - ✅  opravit vytvoření slovíčka
- - otestovat aplikaci
+ - ✅ opravit vytvoření slovíčka
+ - ✅ client side (menu|breadcrumbs|pagas)
+ - pamatování dat ve formuláři
  - doimplementovat font
- - doimplementovat typescript (další studium)
  - doimplementovat lazyload
- - client side (menu|breadcrumbs|pagas)
  - flush messages - automaticky odstranit hlášku po x vteřinách
+ - otestovat aplikaci
+ - doimplementovat typescript (další studium)
+ - customizace bootstrapu

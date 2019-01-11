@@ -1,6 +1,6 @@
 <template>
     <div class="col-xl-5 form-group">
-        <label for="">Url článku</label>
+        <label for="">Fragment URL článku</label>
         <input
             type="text"
             class="form-control"
