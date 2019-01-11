@@ -99,7 +99,8 @@ export default {
     },
     methods: {
         ...mapMutations({
-            editArticle: "article/EDITARTICLE"
+            editArticle: "article/EDITARTICLE",
+            setArticle: "article/SETARTICLE"
         }),
         ...mapActions({
             saveArticle: "article/saveArticle"
@@ -117,6 +118,21 @@ export default {
             }
             this.editArticle({ [name]: data });
         }
+    },
+    mounted() {
+        const articleFromStrorage = window.localStorage.getItem(
+            "createArticleFormData"
+        );
+        if (articleFromStrorage) {
+            this.setArticle(JSON.parse(articleFromStrorage));
+            //this.article = JSON.parse(articleFromStrorage);
+        }
+    },
+    beforeUpdate() {
+        window.localStorage.setItem(
+            "createArticleFormData",
+            JSON.stringify(this.article)
+        );
     }
 };
 </script>

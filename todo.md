@@ -3,7 +3,7 @@
  - ✅ smazání článku
  - ✅ opravit vytvoření slovíčka
  - ✅ client side (menu|breadcrumbs|pagas)
- - pamatování dat ve formuláři
+ - ✅ pamatování dat ve formuláři
  - doimplementovat font
  - doimplementovat lazyload
  - flush messages - automaticky odstranit hlášku po x vteřinách

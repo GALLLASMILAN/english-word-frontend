@@ -14,7 +14,7 @@
         >Table Hover</button>
         <ckeditor
             type="classic"
-            v-model="editorData"
+            v-model="value"
             :config="editorConfig"
             @input.passive="$emit('edit:content', $event)"
         ></ckeditor>
@@ -29,7 +29,6 @@ export default {
         return {
             editor: "dd",
             server: true,
-            editorData: "<p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>",
             editorConfig: {
                 toolbar: [
                     "heading",
