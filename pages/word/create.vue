@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios';
 import getBreadCrumbs from '~/lib/get-bread-crumbs';
 export default {
     middleware: ['authenticated'],
@@ -48,12 +47,11 @@ export default {
                     translates: this.translates.split(',').map(translate => translate.trim()),
                     language: this.language.trim()
                 }
-
-                axios.post('/v1/word/save', data).then(response => {
-                    this.flush(`slovíčko ${data.word} bylo úspěšně přidáno`);
+                this.$api('word').create(data).then(response => {
+                    this.$flush(`slovíčko ${data.word} bylo úspěšně přidáno`);
                     this.setDefaultValues();
                 }).catch(error => {
-                    this.flushError('nepodařilo se přidat nové slovíčko');
+                    this.$flushError('nepodařilo se přidat nové slovíčko');
                 });
             }
         },

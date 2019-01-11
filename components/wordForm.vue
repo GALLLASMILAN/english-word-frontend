@@ -87,7 +87,7 @@ export default {
                 .deleteById(this.word._id)
                 .then(response => {
                     this.$flush("Slovíčko bylo smazáno");
-                    this.$router.push("/list");
+                    this.$router.push("/word");
                 })
                 .catch(error => this.$flushError(error.message));
         }
