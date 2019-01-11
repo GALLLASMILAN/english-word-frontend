@@ -9,7 +9,7 @@
                     <ul class="list-inline mb-4">
                         <li class="list-inline-item">23.10.2018</li>
                         <li class="list-inline-item">Milan Gallas</li>
-                        <li class="list-inline-item"><a href="">24 komentářů</a></li>
+                        <li class="list-inline-item"><a href="" target="blank">24 komentářů</a></li>
                     </ul>
 
                     <div class="article-content" v-if="article.body" v-html="article.body">

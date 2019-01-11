@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Vytvoření nového článku new2</h2>
+        <h2>Vytvoření nového článku</h2>
         <form
             action=""
             class="mt-5"
@@ -17,7 +17,7 @@
                 />
             </div>
             <div class="row">
-                <div class="col-xl-10 form-group offset-xl-1">
+                <div class="col-xl-10 form-group offset-xl-1" style="min-height:357px">
                     <ContentEditor 
                         v-model="article.body"
                         @edit:content="edit('body', $event)"

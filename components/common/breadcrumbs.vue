@@ -3,7 +3,7 @@
         <ol class="breadcrumb">
             <li
                 v-for="(crumb, index) in crumbs"
-                :key="index"
+                :key="index+crumb.name"
                 class="breadcrumb-item"
             >
                 <a :href="crumb.url">
@@ -12,7 +12,7 @@
             </li>
             <li
                 v-for="(activeCrumb, index) in active"
-                :key="index"
+                :key="index+activeCrumb.name"
                 class="breadcrumb-item active"
                 aria-current="page"
             >
