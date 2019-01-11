@@ -5,7 +5,7 @@
  - ✅ client side (menu|breadcrumbs|pagas)
  - ✅ pamatování dat ve formuláři
  - ✅  doimplementovat font
- - flush messages - automaticky odstranit hlášku po x vteřinách
+ - ✅ flush messages - automaticky odstranit hlášku po x vteřinách
  - doimplementovat typescript (další studium)
  - customizace bootstrapu
  - doimplementovat lazyload

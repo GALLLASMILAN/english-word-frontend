@@ -18,7 +18,13 @@
 
 <script>
 import { mapState } from "vuex";
+import { setTimeout } from "timers";
 export default {
+    data: function() {
+        return {
+            logsToDel: []
+        };
+    },
     computed: {
         ...mapState({
             logs: state => state.logs
@@ -27,7 +33,22 @@ export default {
     methods: {
         createAlertClass(type) {
             return `alert alert-${type} alert-dismissible`;
+        },
+        del(log) {
+            this.$store.dispatch('logs/delete', log);
         }
+    },
+    watch: {
+        logs(old) {
+            old.filter(log => this.logsToDel.indexOf(log) === -1).map(log => {
+                this.logsToDel.push(log);
+                setTimeout(() => this.del(log), process.env.FLUSH_DURATION)
+            });
+        }
+    },
+    mounted() {
+        this.logsToDel.push(...this.logs);
+        this.logsToDel.map(log => setTimeout(() => this.del(log), process.env.FLUSH_DURATION));
     }
 };
 </script>

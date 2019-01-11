@@ -12,7 +12,7 @@ const env = {
     baseUrl: isProduction
         ? 'https://english-backend-app.herokuapp.com'
         : 'http://localhost:4000',
-    flushDuration: 7
+    FLUSH_DURATION: 7000
 };
 
 module.exports = {

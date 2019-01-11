@@ -46,9 +46,10 @@ TODO:
  - tree shaking = "sideEffects": false (in package.json)
  - bundle analyze = webpack-bundle-analyzer" ---  http://127.0.0.1:8888/
  - lang in html = head.bodyAttrs.lang="cs" && head.htmlAttrs.lang="cs" (nuxt.config.js)
- @todo chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js
- @todo použít https://github.com/GoogleChromeLabs/quicklink
- VETUR - doplňek do code. Nastavit 4 mezery jako tab!!!!§
+ - VETUR - doplňek do code. Nastavit 4 mezery jako tab!!!!§
+ - setTimeout = 
+    - setTimeout(console.log('dd'), 8000)); // provede se hned a nečeká 8 vteřin
+    - setTimeout(() => console.log('dd'), 8000)); // vyčká 8 vteřin
 
  #optimalizace Jarek
  https://www.fontsquirrel.com/tools/webfont-generator - pro generování všech variant
