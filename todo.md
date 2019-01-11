@@ -1,9 +1,10 @@
  - ✅ doimplementovat ckeditor
  - ✅ odstranit přebytečné balíčky
- - smazání článku
+ - ✅ smazání článku
  - opravit vytvoření slovíčka
  - otestovat aplikaci
  - doimplementovat font
  - doimplementovat typescript (další studium)
  - doimplementovat lazyload
  - client side (menu|breadcrumbs|pagas)
+ - flush messages - automaticky odstranit hlášku po x vteřinách
