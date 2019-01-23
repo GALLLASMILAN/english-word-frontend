@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container contentBlock-1">
         <h2>Vytvoření nového článku</h2>
         <form
             action=""
@@ -56,11 +56,13 @@
                 alt=""
                 class="w-100"
             >
-            <Article
-                class="py-4"
-                :article="article"
-                id="articlePreview"
-            />
+            <div style="background: #f5f5f5">
+                <Article 
+                    class="p-5"
+                    :article="article"
+                    id="articlePreview"
+                />
+            </div>
         </div>
 
     </div>

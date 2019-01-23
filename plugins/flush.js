@@ -5,8 +5,8 @@ export default function flush({
         type: 'info',
         message
     });
-    const flushWarrning = (message) => store.dispatch('logs/log', {
-        type: 'warrning',
+    const flushWarning = (message) => store.dispatch('logs/log', {
+        type: 'warning',
         message
     });
     const flushError = (message) => store.dispatch('logs/log', {
@@ -15,6 +15,6 @@ export default function flush({
     });
 
     inject('flush', flush);
-    inject('flushWarrning', flushWarrning);
+    inject('flushWarning', flushWarning);
     inject('flushError', flushError);
 }

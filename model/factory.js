@@ -1,9 +1,11 @@
 import Article from './article';
 import Word from './word';
+import User from './user';
 
 const models = {
     article: Article,
-    word: Word
+    word: Word,
+    user: User
 };
 
 export default function build(axios, modelName, isDev) {

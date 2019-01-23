@@ -1,5 +1,5 @@
 <template>
-    <div v-if="articleList">
+    <div v-if="articleList" class="contentBlock-1">
         <div
             v-for="(article, index) in articleList"
             :key="index"
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div v-else>
+    <div v-else class="contentBlock-1">
         <p>Žádné články nejsou k dispozici</p>
     </div>
 </template>
@@ -71,6 +71,11 @@ export default {
         },
         isAdmin() {
             return this.actualUser.role == "admin";
+        }
+    },
+    head() {
+        return {
+            title: 'Výpis článků'
         }
     }
 };

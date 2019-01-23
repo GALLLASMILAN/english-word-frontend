@@ -22,7 +22,7 @@
         >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li
-                    v-for="(menuItem, index) in getData()"
+                    v-for="(menuItem, index) in getData(menuItems)"
                     :key="index+menuItem.url"
                     :class="menuItem.class"
                     @click="hideMenu"
@@ -33,13 +33,21 @@
                     >{{menuItem.title}} </nuxt-link>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input
-                    class="form-control mr-sm-2"
-                    type="search"
-                    placeholder="Search"
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li
+                    v-for="(menuItem, index) in getData(rightMenuItems)"
+                    :key="index+menuItem.url"
+                    @click="hideMenu"
+                    :class="menuItem.class"
                 >
-            </form>
+                    <nuxt-link
+                        :to="menuItem.url"
+                        class="nav-link"
+                    >
+                        {{menuItem.title}}
+                    </nuxt-link>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
@@ -64,29 +72,43 @@ export default {
                 role: ["admin", "user"]
             },
             {
-                title: "články",
+                title: "Články",
                 url: "/article",
                 role: ["admin", "user", "guest"]
             },
             {
-                title: "nový článek",
+                title: "Nový článek",
                 url: "/article/create",
                 role: ["admin", "user"]
-            },
-            {
-                title: "Příhlášení",
-                url: "/user/login",
-                role: ["guest"]
             }
         ];
 
+        const rightMenuItems = [
+            {
+                title: "Registrace",
+                url: "/user/registration",
+                role: ["admin", "guest"]
+            },
+            {
+                title: "Přihlásit se",
+                url: "/user/login",
+                role: ["admin", "guest"]
+            },
+            {
+                title: "Odhlásit se",
+                url: "/user/logout",
+                role: ["user"]
+            },
+        ];
+
         return {
-            menuItems: data
+            menuItems: data,
+            rightMenuItems
         };
     },
     methods: {
-        getData() {
-            return this.menuItems
+        getData(items) {
+            return items
                 .filter(
                     menuItem =>
                         menuItem.role.indexOf(
@@ -104,9 +126,9 @@ export default {
                 });
         },
         hideMenu() {
-            console.log('run');
-            document.getElementById('navbarTogglerDemo02').className = 'navbar-collapse collapse'
-        }
+            document.getElementById("navbarTogglerDemo02").className =
+                "navbar-collapse collapse";
+        },
     }
 };
 </script>

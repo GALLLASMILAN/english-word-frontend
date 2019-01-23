@@ -1,10 +1,10 @@
 <template>
     <div
-        class="container"
+        class="container contentBlock-1"
         v-if="wordList.length>0"
     >
         <h1>Seznam existujících slovíček</h1>
-        <table class="table table-sm table-striped">
+        <table class="table table-sm table-striped mt-4">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Slovíčko</th>

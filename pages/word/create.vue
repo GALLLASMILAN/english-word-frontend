@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container contentBlock-1">
         <h1>Přidání nového slovíčka</h1>
         <form v-on:submit="saveWord">
             <div class="form-group">

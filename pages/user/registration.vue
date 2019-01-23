@@ -1,21 +1,21 @@
 <template>
     <div class="text-center contentBlock-1">
         <LoginForm 
-            @auth:user="loginUser($event)"
+            @save:user="registerUser($event)"
         />
     </div>
 </template>
 
 <script>
 import getBreadCrumbs from "~/lib/get-bread-crumbs";
-import LoginForm from "~/components/user/reg-login/login";
+import LoginForm from "~/components/user/reg-login/registration";
 import { request } from 'http';
 export default {
     components: { LoginForm },
     async asyncData({ store }) {
-        store.dispatch("breadcrumbs/set", getBreadCrumbs("user/login"));
+        store.dispatch("breadcrumbs/set", getBreadCrumbs("user/registration"));
         return {
-            title: "Přihlášení uživatele"
+            title: "Registrace nového uživatele"
         };
     },
     head() {
@@ -24,17 +24,13 @@ export default {
         };
     },
     methods: {
-        loginUser(user) {
-            this.$api('user').sigin({
+        registerUser(user) {
+            this.$api('user').sigup({
                 email: user.email,
                 password: user.password
             }).then(response => {
-                this.$store.dispatch('user/save', {
-                    user: response.data.user,
-                    token: response.data.token
-                });
-                this.$flush('Jste úspěšně přihlášen');
-                this.$router.push("/word");
+                this.$flush('Vaše registrace proběhla úspěšně');
+                this.$router.push("/user/login");
             }).catch(error => {
                 this.$flushError('Nepodařilo se přihlásit Špatné jméno, nebo heslo');
             })

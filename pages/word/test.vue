@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container contentBlock-1">
         <h1>Testování slovní zásoby</h1>
         <form v-on:submit="testTranslate">
             <div class="row">

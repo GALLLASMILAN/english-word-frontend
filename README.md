@@ -41,6 +41,7 @@ TODO:
 #fuck
 [https://cdnjs.com/libraries/twitter-bootstrap]
 = cloudfare => lepší pokrití v evropě a americe
+ - ERROR: eslint v html = npm i eslint-plugin-html
  - javascript, který načítám z cdn musí mít nataveno (crossorigin="anonymous")
  - integrity = kvůli zabezpečení
  - tree shaking = "sideEffects": false (in package.json)
