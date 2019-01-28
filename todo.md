@@ -8,7 +8,7 @@ Basic
  - ✅ doimplementovat font
  - ✅ flush messages - automaticky odstranit hlášku po x vteřinách
  - ✅ autorizace
- - vlastní 404
+ - ✅ vlastní 404
  - ✅ změna pozadí viz zdroják
  - testování
  - vylepšení axios = odchytávání 40x
