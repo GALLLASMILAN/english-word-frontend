@@ -16,10 +16,12 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^11.2.0",
     "@nuxtjs/axios": "^5.0.0",
+    "cookie": "^0.3.1",
     "cross-env": "^5.2.0",
     "email-validator": "^2.0.4",
     "eslint-plugin-html": "^4.0.6",
     "express": "^4.16.3",
+    "js-cookie": "^2.2.0",
     "nuxt": "^2.0.0",
     "vue-ckeditor5": "^0.4.1",
     "vuex-persistedstate": "^2.5.4"

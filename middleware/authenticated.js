@@ -1,8 +1,6 @@
-export default function ({store, redirect}) {
-    // If the user is not authenticated
-    if (!process.server) {
-        if (store.state.user.actualUser.role === 'guest') {
-            return redirect('/user/login');
-        }
+export default function (content) {
+    // If the user is not authenticated console.log(window.__NUXT__, window.user);
+    if (content.store.state.user.actualUser.role === 'guest') {
+        return content.redirect('/user/login');
     }
 }

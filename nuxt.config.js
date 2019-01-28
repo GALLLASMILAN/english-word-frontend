@@ -98,11 +98,14 @@ module.exports = {
     /*
   ** Plugins to load before mounting the App
   */
-    plugins: ['~/plugins/flush', '~/plugins/api', {
-        src: '~/plugins/localStorage', ssr: false
-    }, {
-        src: '~/plugins/ckeditor', ssr: false
-    }],
+    plugins: [
+        '~/plugins/flush',
+        '~/plugins/api', {
+            src: '~/plugins/ckeditor',
+            ssr: false
+        },
+        '~/plugins/persistedstate'
+    ],
 
     /*
   ** Nuxt.js modules

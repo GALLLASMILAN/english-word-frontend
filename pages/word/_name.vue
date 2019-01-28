@@ -18,6 +18,7 @@ import axios from "~/plugins/axios";
 import wordForm from "~/components/wordForm";
 import getBreadCrumbs from "~/lib/get-bread-crumbs";
 export default {
+    middleware: ["authenticated"],
     components: { wordForm },
     data: () => ({ origWord: false, debug: false }),
     async asyncData({ params, store, app }) {
