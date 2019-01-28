@@ -5,10 +5,8 @@
     >
         <!--    <BradCrums /> -->
         <div class="row">
-            <div
-                class="col-xl-8 col-lg-7 contentBlock-1 mb-5 "
-            >
-            <!-- col-md-10 offset-md-1 col-xl-7 offset-xl-1 col-lg-7 offset-lg-1 -->
+            <div class="col-xl-8 col-lg-7 contentBlock-1 mb-5 ">
+                <!-- col-md-10 offset-md-1 col-xl-7 offset-xl-1 col-lg-7 offset-lg-1 -->
                 <div class="article">
                     <h2>{{article.title}}</h2>
 
@@ -34,7 +32,11 @@
             <div class="col-xl-3 col-lg-3 offset-xl-1 offset-lg-1">
                 <!-- col-md-12 col-xl-3 bg-light col-lg-3 -->
                 <div>
-                    <RelatedArticle :relatedArticles="article.relatedArticles" />
+                    <RelatedArticle
+                        v-if="article.relatedArticles.length"
+                        :relatedArticles="article.relatedArticles"
+                        class="mb-5"
+                    />
                     <Tags :tags="article.tags" />
                 </div>
             </div>

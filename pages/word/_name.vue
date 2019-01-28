@@ -1,6 +1,7 @@
 <template>
-    <div v-if="word">
-        <wordForm
+    <div v-if="word" class="contentBlock-1">
+        <h1>Editace slovíčka {{word.name}}</h1>
+        <wordForm class="mt-4 mb-5"
             :word="word"
             :buttonName="buttonName"
             :methodName="methodName"

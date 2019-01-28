@@ -8,6 +8,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
+// router custom hack
+const routerData = require('./lib/acl/data.js');
+
 const env = {
     baseUrl: isProduction
         ? 'https://english-backend-app.herokuapp.com'
@@ -19,6 +22,88 @@ module.exports = {
     mode: 'universal',
 
     env: env,
+
+    router: {
+        extendRoutes(routes, resolve) {
+            routes.splice(0, routes.length);
+            routerData.map(page => {
+                routes.push({
+                    name: page.name,
+                    path: page.url,
+                    component: resolve(__dirname, page.component)
+                }); 
+            });
+            /*routes.splice(0, routes.length);
+            routes.push({
+                name: 'acricle',
+                path: '/clanky',
+                component: resolve(__dirname, 'pages/article/index.vue')
+            });*/
+            /*routes = [
+                {
+                    name: 'article',
+                    path: '/clanky',
+                    component: resolve(__dirname, 'pages/article/index.vue'),
+                    chunkName: 'pages/article/index'
+                }, {
+                    name: 'word',
+                    path: '/word',
+                    component: resolve(__dirname, 'pages/word/index.vue'),
+                    chunkName: 'pages/word/index'
+                }, {
+                    name: 'article-create',
+                    path: '/article/create',
+                    component: resolve(__dirname, 'pages/article/create.vue'),
+                    chunkName: 'pages/article/create'
+                }, {
+                    name: 'article-mockArticle',
+                    path: '/article/mockArticle',
+                    component: resolve(__dirname, 'pages/article/mockArticle.js'),
+                    chunkName: 'pages/article/mockArticle'
+                }, {
+                    name: 'user-login',
+                    path: '/user/login',
+                    component: resolve(__dirname, 'pages/user/login.vue'),
+                    chunkName: 'pages/user/login'
+                }, {
+                    name: 'user-logout',
+                    path: '/user/logout',
+                    component: resolve(__dirname, 'pages/user/logout.vue'),
+                    chunkName: 'pages/user/logout'
+                }, {
+                    name: 'user-registration',
+                    path: '/user/registration',
+                    component: resolve(__dirname, 'pages/user/registration.vue'),
+                    chunkName: 'pages/user/registration'
+                }, {
+                    name: 'word-create',
+                    path: '/word/create',
+                    component: resolve(__dirname, 'pages/word/create.vue'),
+                    chunkName: 'pages/word/create'
+                }, {
+                    name: 'word-test',
+                    path: '/word/test',
+                    component: resolve(__dirname, 'pages/word/test.vue'),
+                    chunkName: 'pages/word/test'
+                }, {
+                    name: 'article-url',
+                    path: '/article/:url',
+                    component: resolve(__dirname, 'pages/article/_url.vue'),
+                    chunkName: 'pages/article/_url'
+                }, {
+                    name: 'word-name',
+                    path: '/word/:name',
+                    component: resolve(__dirname, 'pages/word/_name.vue'),
+                    chunkName: 'pages/word/_name'
+                }, {
+                    name: 'index',
+                    path: '/',
+                    component: resolve(__dirname, 'pages/index.vue'),
+                    chunkName: 'pages/index'
+                }
+            ];*/
+        }
+    },
 
     /*
   ** Headers of the page
@@ -110,15 +195,7 @@ module.exports = {
     /*
   ** Nuxt.js modules
   */
-    modules: [// Doc: https://github.com/nuxt-community/axios-module#usage
-        '@nuxtjs/axios'],
-    /*
-  ** Axios module configuration
-  */
-    axios: {
-        // See https://github.com/nuxt-community/axios-module#options
-    },
-
+    modules: [],
     /*
   ** Build configuration
   */

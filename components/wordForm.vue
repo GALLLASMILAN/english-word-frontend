@@ -2,7 +2,7 @@
     <div>
         <form @submit="processData">
             <div class="row">
-                <div class="form-group col-5">
+                <div class="form-group col-lg-5 col-xl-5 col-sm-12">
                     <label for="exampleInputEmail1">Slovíčko</label>
                     <input
                         type="text"
@@ -11,7 +11,7 @@
                         id="text"
                     >
                 </div>
-                <div class="form-group col-5 offset-2">
+                <div class="form-group col-lg-5 col-xl-5 col-md-12 col-sm-12 offset-xl-2 offset-lg-2 offset-md-0 offset-sm-0">
                     <label for="sel1">Vyber jazyk:</label>
                     <select
                         class="form-control"

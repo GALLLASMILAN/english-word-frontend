@@ -53,82 +53,36 @@
 </template>
 
 <script>
+import * as acl from "~/lib/acl/acl";
+import { mapState } from 'vuex';
 export default {
-    data: function() {
-        const data = [
-            {
-                title: "Vytvoření slovíčka",
-                url: "/word/create",
-                role: ["admin", "user"]
-            },
-            {
-                title: "Testování",
-                url: "/word/test",
-                role: ["admin", "user"]
-            },
-            {
-                title: "Seznam slovíček",
-                url: "/word",
-                role: ["admin", "user"]
-            },
-            {
-                title: "Články",
-                url: "/article",
-                role: ["admin", "user", "guest"]
-            },
-            {
-                title: "Nový článek",
-                url: "/article/create",
-                role: ["admin", "user"]
-            }
-        ];
-
-        const rightMenuItems = [
-            {
-                title: "Registrace",
-                url: "/user/registration",
-                role: ["admin", "guest"]
-            },
-            {
-                title: "Přihlásit se",
-                url: "/user/login",
-                role: ["admin", "guest"]
-            },
-            {
-                title: "Odhlásit se",
-                url: "/user/logout",
-                role: ["user"]
-            },
-        ];
-
-        return {
-            menuItems: data,
-            rightMenuItems
-        };
+    computed: {
+        ...mapState('user', {
+            role: state => state.actualUser.role
+        }),
+        menuItems() {
+            return acl.getPagesToLeftMenu(this.$store.state.user.actualUser.role);
+        },
+        rightMenuItems() {
+            return acl.getPagesToRightMenu(this.$store.state.user.actualUser.role);
+        }
     },
     methods: {
         getData(items) {
-            return items
-                .filter(
-                    menuItem =>
-                        menuItem.role.indexOf(
-                            this.$store.state.user.actualUser.role
-                        ) != -1
-                )
-                .map(item => {
-                    return {
-                        ...item,
-                        class:
-                            this.$route.path == item.url
-                                ? "nav-item active"
-                                : "nav-item"
-                    };
-                });
+            return items.map(item => {
+                return {
+                    ...item,
+                    class:
+                        this.$route.path == item.url
+                            ? "nav-item active"
+                            : "nav-item"
+                };
+            });
         },
         hideMenu() {
             document.getElementById("navbarTogglerDemo02").className =
                 "navbar-collapse collapse";
-        },
+        }
     }
 };
 </script>

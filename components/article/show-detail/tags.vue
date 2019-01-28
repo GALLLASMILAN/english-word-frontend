@@ -1,6 +1,6 @@
 <template>
     <div
-        class="row mt-5 contentBlock p-3"
+        class="row contentBlock p-3"
     >
         <div class="headline col-12">
             <h3>Tagy</h3>

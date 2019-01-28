@@ -37,7 +37,7 @@ export default {
     computed: {
         isGuest() {
             return this.$store.state.user.actualUser.role === 'guest';
-        }
+        },
     },
     head() {
         return {
