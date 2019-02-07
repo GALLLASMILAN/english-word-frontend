@@ -48,15 +48,4 @@ export default {
 };
 </script>
 
-<style>
-.form-signin {
-    width: 100%;
-    max-width: 400px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.form-signin .checkbox {
-    font-size: 120%;
-}
-</style>
 

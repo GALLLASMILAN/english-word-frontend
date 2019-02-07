@@ -47,10 +47,3 @@ export default {
     }
 };
 </script>
-
-<style>
-#breadcrumbs {
-    background: white !important;
-}
-</style>
-

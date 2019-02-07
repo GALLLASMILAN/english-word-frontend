@@ -23,6 +23,3 @@ export default {
     props: ["relatedArticles"]
 };
 </script>
-
-<style scoped>
-</style>

@@ -94,36 +94,3 @@ export default {
     }
 };
 </script>
-
-<style>
-@media only screen and (max-width: 570px) {
-    .card-custom-img-top {
-        width: 35%;
-        border-top-left-radius: calc(0.25rem - 1px);
-        border-top-right-radius: calc(0.25rem - 1px);
-        margin: 0 auto;
-        padding-top: 1em;
-    }
-}
-
-@media only screen and (min-width: 570px) {
-    .card-custom-img-top {
-        border-top-left-radius: calc(0.25rem - 1px);
-        border-top-right-radius: calc(0.25rem - 1px);
-        margin: 0 auto;
-        padding-top: 1em;
-    }
-}
-
-.custom-title {
-    text-align: center;
-}
-
-.center-block {
-    text-align: center;
-}
-
-.read-button {
-    margin: 0 auto;
-}
-</style>

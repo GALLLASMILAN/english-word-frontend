@@ -87,7 +87,10 @@ export default {
                 .deleteById(this.word._id)
                 .then(response => {
                     this.$flush("Slovíčko bylo smazáno");
-                    this.$router.push("/word");
+                    // redirect
+                    const page = acl.getPageByName("word");
+                    const url = "url" in page ? page.url : "";
+                    this.$router.push(url);
                 })
                 .catch(error => this.$flushError(error.message));
         }

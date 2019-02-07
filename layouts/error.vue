@@ -41,7 +41,7 @@ export default {
     },
     head() {
         return {
-            title: this.message,
+            title: this.message || '404 - Not found',
             meta: [
                 {
                     name: "viewport",
@@ -53,17 +53,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.error-template {
-    padding: 40px 15px;
-    text-align: center;
-}
-.error-actions {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.error-actions .btn {
-    margin-right: 10px;
-}
-</style>

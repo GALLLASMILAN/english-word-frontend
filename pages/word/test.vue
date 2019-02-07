@@ -60,7 +60,6 @@
                 </div>
             </div>
             <br />
-
             <div class="row col-12">
                 <button
                     type="submit"
@@ -81,7 +80,8 @@ export default {
         translate: "",
         originalWord: "",
         result: false,
-        origWord: false
+        origWord: false,
+        lastTranslate: ""
     }),
     async mounted() {
         await this.loadWord();
@@ -102,10 +102,13 @@ export default {
                 originalWord: this.origWord,
                 translate: this.translate
             };
-
             this.$api('word').translate(data).then(response => {
+                
+                this.result = {
+                    translates: response.data.wordData.translates,
+                    userTranslate: this.translate
+                };
                 this.translate = "";
-                this.result = response.data;
                 this.loadWord();
             }).catch(error => {
                 this.$flushError(error.message);
@@ -123,7 +126,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .red {
     color: red;
     font-weight: bold;
