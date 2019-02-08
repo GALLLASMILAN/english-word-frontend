@@ -7,9 +7,9 @@
 </template>
 
 <script>
+import * as acl from "../../lib/acl/acl.js";
 import getBreadCrumbs from "~/lib/get-bread-crumbs";
 import LoginForm from "~/components/user/reg-login/registration";
-import { request } from 'http';
 export default {
     components: { LoginForm },
     async asyncData({ store }) {
@@ -29,8 +29,10 @@ export default {
                 email: user.email,
                 password: user.password
             }).then(response => {
-                this.$flush('Vaše registrace proběhla úspěšně');
-                this.$router.push("/user/login");
+                this.$flush('Vaše registrace proběhla úspěšně, můžete se příhlásit');
+                const page = acl.getPageByName("user-login");
+                const url = "url" in page ? page.url : "";
+                this.$router.push(url);
             }).catch(error => {
                 this.$flushError('Nepodařilo se přihlásit Špatné jméno, nebo heslo');
             })
