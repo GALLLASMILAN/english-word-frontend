@@ -39,10 +39,13 @@ export default {
     },
     methods: {
         loginUser() {
-            if(!validator.validate(this.user.email)) {
-                this.$flushWarning('Neplatná emailová adresa. Prosím zadejte email ve správném formátu');
+            if (!validator.validate(this.user.email)) {
+                this.$flushWarning(
+                    "Neplatná emailová adresa. Prosím zadejte email ve správném formátu"
+                );
+            } else {
+                this.$emit("save:user", this.user);
             }
-            this.$emit('save:user', this.user);
         }
     }
 };
